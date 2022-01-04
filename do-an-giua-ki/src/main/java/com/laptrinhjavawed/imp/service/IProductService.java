@@ -16,4 +16,11 @@ public interface IProductService {
 	Product getOneById(String id);
 
 	List<Product> getAll();
+
+	int countgetAllProduct();
+
+	int countgetAllProduct(String cateID);
+
+	List<Product> getProducByPaging(int input, int param);
+
 }

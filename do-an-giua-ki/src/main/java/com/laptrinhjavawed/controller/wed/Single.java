@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.laptrinhjavawed.imp.service.IProductService;
+import com.laptrinhjavawed.model.Card;
 import com.laptrinhjavawed.model.Product;
+
+import Utils.SessionUtils;
 
 @WebServlet(urlPatterns = { "/single" })
 public class Single extends HttpServlet {
@@ -32,6 +35,10 @@ public class Single extends HttpServlet {
 		List<Product> listGetFour = product.getOneOrMoreSpecialDeals(4, cateID);
 		request.setAttribute("listFour", listGetFour);
 		request.setAttribute("oneprod", oneProduct);
+		if (SessionUtils.getInstance().getValue(request, "giohangs") != null) {
+			List<Card> listSize = (List<Card>) SessionUtils.getInstance().getValue(request, "giohangs");
+			request.setAttribute("listSize", listSize.size());
+		}
 		request.getRequestDispatcher("/views/single.jsp").forward(request, response);
 	}
 

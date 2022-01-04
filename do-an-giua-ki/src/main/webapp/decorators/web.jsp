@@ -17,6 +17,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -30,7 +42,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
+<script src='<c:url value="/template/web/js/jquery-3.3.1.min.js"/>'></script>
+<script src='<c:url value="/template/web/js/bootstrap-3.1.1.min.js"/>'></script>
+<script src='<c:url value="/template/paging/jquery.twbsPagination.js"/>'></script>
+<link href='<c:url value="/template/web/css/bootstrap.min.css"/>'
+	rel="stylesheet" />
+<script src='<c:url value="/template/web/js/ajax.js"/>'></script>
 <!-- //custom-theme -->
 <link href='<c:url value="/template/web/css/bootstrap.css"/>'
 	rel="stylesheet" type="text/css" media="all" />

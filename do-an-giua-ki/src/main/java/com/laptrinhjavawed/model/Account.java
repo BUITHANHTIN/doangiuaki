@@ -4,17 +4,21 @@ import java.util.ArrayList;
 
 public class Account {
 	int id;
-	String user, pass;
+	String username, user, pass;
 	int isSell, isAdmin;
-	ArrayList<Product> listProduct;
+	
 
-	public ArrayList<Product> getListProduct() {
-		return listProduct;
+	
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setListProduct(ArrayList<Product> listProduct) {
-		this.listProduct = listProduct;
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
+	
 
 	public int getId() {
 		return id;
@@ -60,19 +64,19 @@ public class Account {
 		super();
 	}
 
-	public Account(int id, String user, String pass, int isSell, int isAdmin) {
+	public Account(int id, String username, String user, String pass, int isSell, int isAdmin) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.pass = pass;
 		this.isSell = isSell;
 		this.isAdmin = isAdmin;
+		this.username = username;
 	}
 
-	@Override
-	public String toString() {
-		return "Account [id=" + id + ", user=" + user + ", pass=" + pass + ", isSell=" + isSell + ", isAdmin=" + isAdmin
-				+ "]";
-	}
+	
+
+	
+
 
 }

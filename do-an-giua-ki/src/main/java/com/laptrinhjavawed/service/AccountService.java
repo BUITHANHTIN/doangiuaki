@@ -14,4 +14,18 @@ public class AccountService implements IAccountService {
 	public Account getOneAccount(String user, String pass) {
 		return account.getOneAccount(user, pass).isEmpty() ? null : account.getOneAccount(user, pass).get(0);
 	}
+
+	@Override
+	public String UsernameExist(String username) {
+		return account.UsernameExist(username);
+	}
+
+	@Override
+	public boolean InsertAccount(Account account1) {
+		if (account.InsertAccount(account1)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

@@ -26,7 +26,7 @@
 			<div class="side-bar col-md-3">
 				<div class="search-hotel">
 					<h3 class="agileits-sear-head">Search Here..</h3>
-					<form action='<c:url value="/shop"/>' method="post">
+					<form action='<c:url value="/shop"/>' method="get">
 						<input type="search" placeholder="Product name..." name="Search"
 							required=""> <input type="submit" value=" ">
 					</form>
@@ -140,11 +140,13 @@
 			<div class="left-ads-display col-md-9">
 				<div class="wrapper_top_shop">
 					<div class="col-md-6 shop_left">
-						<img src="images/banner3.jpg" alt="">
+						<img src='<c:url value="/template/web/images/banner3.jpg"/>'
+							alt="">
 						<h6>40% off</h6>
 					</div>
 					<div class="col-md-6 shop_right">
-						<img src="images/banner2.jpg" alt="">
+						<img src='<c:url value="/template/web/images/banner2.jpg"/>'
+							alt="">
 						<h6>50% off</h6>
 					</div>
 					<div class="clearfix"></div>
@@ -193,7 +195,65 @@
 						<div class="clearfix"></div>
 
 					</div>
+					<c:if test="${checkPaging==2}">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination" style="padding-left: 280px;">
+								<c:if test="${pagingID>1 }">
+									<li class="page-item"><a class="page-link"
+										href='<c:url value="/shop?paging=${pagingID-1}&Search=${search }&code=2"/>'>Previous</a></li>
+								</c:if>
 
+								<c:forEach var="item" begin="1" end="${endPaging}">
+									<li class="${pagingID==item?" active":""}" class="page-item"><a
+										class="page-link"
+										href='<c:url value="/shop?paging=${item}&Search=${search }&code=2"/>'>${item}</a></li>
+								</c:forEach>
+								<c:if test="${pagingID< endPaging}">
+									<li class="page-item"><a class="page-link"
+										href='<c:url value="/shop?paging=${pagingID+1}&Search=${search}&code=2"/>'>Next</a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</c:if>
+					<c:if test="${checkPaging==1}">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination" style="padding-left: 280px;">
+								<c:if test="${pagingID>1 }">
+									<li class="page-item"><a class="page-link"
+										href='<c:url value="/shop?paging=${pagingID-1}&getAllPro=getAll&code=1"/>'>Previous</a></li>
+								</c:if>
+
+								<c:forEach var="item" begin="1" end="${endPaging}">
+									<li class="${pagingID==item?" active":""}" class="page-item"><a
+										class="page-link"
+										href='<c:url value="/shop?paging=${item}&getAllPro=getAll&code=1"/>'>${item}</a></li>
+								</c:forEach>
+								<c:if test="${pagingID< endPaging}">
+									<li class="page-item"><a class="page-link"
+										href='<c:url value="/shop?paging=${pagingID+1}&getAllPro=getAll&code=1"/>'>Next</a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</c:if>
+					<c:if test="${checkPaging==0}">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination" style="padding-left: 280px;">
+								<c:if test="${pagingID>1 }">
+									<li class="page-item"><a class="page-link"
+										href='<c:url value="/shop?paging=${pagingID-1}&code=${cateID}"/>'>Previous</a></li>
+								</c:if>
+								<c:forEach var="item" begin="1" end="${endPaging}">
+									<li class="${pagingID==item?" active":""}" class="page-item"><a
+										class="page-link"
+										href='<c:url value="/shop?paging=${item}&code=${cateID}"/>'>${item}</a></li>
+								</c:forEach>
+								<c:if test="${pagingID< endPaging}">
+									<li class="page-item"><a class="page-link"
+										href='<c:url value="/shop?paging=${pagingID+1}&code=${cateID}"/>'>Next</a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</c:if>
 					<!-- //product-sec1 -->
 					<div class="col-md-6 shop_left shp">
 						<img src='<c:url value="/template/web/images/banner4.jpg"/>'
@@ -211,5 +271,11 @@
 			<div class="clearfix"></div>
 		</div>
 	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+		
+	</script>
+
 </body>
 </html>

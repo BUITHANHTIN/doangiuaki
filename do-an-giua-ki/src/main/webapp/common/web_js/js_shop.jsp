@@ -3,7 +3,7 @@
 <!-- //js -->
 <!-- cart-js -->
 
-<script>
+<!-- <script>
 	shoe.render();
 
 	shoe.cart.on('shoe_checkout', function(evt) {
@@ -16,7 +16,7 @@
 			}
 		}
 	});
-</script>
+</script> -->
 <!-- //cart-js -->
 <!-- /nav -->
 <script src='<c:url value="/template/web/js/modernizr-2.6.2.min.js" />'></script>
@@ -146,6 +146,7 @@
 		});
 	});
 </script>
+
 <script>
 	$(document).ready(function(c) {
 		$('.close3').on('click', function(c) {
@@ -155,6 +156,9 @@
 		});
 	});
 </script>
+
+
+
 <!-- //end-smoth-scrolling -->
 <script type="text/javascript"
 	src='<c:url value="/template/web/js/bootstrap-3.1.1.min.js" />'></script>

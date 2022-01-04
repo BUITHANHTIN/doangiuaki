@@ -8,8 +8,10 @@
 <title>Insert title here</title>
 </head>
 <link rel="stylesheet"
-	href="<c:url value='/template/login/style.css'/>" />
+	href="<c:url value='/template/login/style.css'/>"  media="all">
+	
 <body>
 	<dec:body />
+	<a href='<c:url value="/trangchu"/>'>Quay lại</a>
 </body>
 </html>

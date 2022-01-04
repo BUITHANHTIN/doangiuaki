@@ -9,7 +9,7 @@
 		<pattern>/admin*</pattern>
 	</decorator>
 	<decorator name="login" page="login.jsp">
-		<pattern>/login</pattern>
+		<pattern>/j_security_check</pattern>
 	</decorator>
 	<decorator name="web" page="web.jsp">
 		<pattern>/*</pattern>

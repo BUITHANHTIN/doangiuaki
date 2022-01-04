@@ -17,7 +17,7 @@ public class AccountImp implements IAccount {
 	public Connection getConnection() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String url = "jdbc:sqlserver://DESKTOP-GKACKIO\\\\THANHTIN:1433;databaseName=doanwedgiay;integratedSecurity=true";
+			String url = "jdbc:sqlserver://DESKTOP-GKACKIO\\\\THANHTIN:1433;databaseName=doanwedgiay1;integratedSecurity=true";
 			String user = "sa";
 			String password = "123";
 			return DriverManager.getConnection(url, user, password);
@@ -29,7 +29,7 @@ public class AccountImp implements IAccount {
 	public List<Account> getOneAccount(String user, String pass) {
 		List<Account> list = new ArrayList<>();
 		Account account = null;
-		Connection con =getConnection();
+		Connection con = getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		if (con != null) {
@@ -42,10 +42,11 @@ public class AccountImp implements IAccount {
 				while (rs.next()) {
 					account = new Account();
 					account.setId(rs.getInt(1));
-					account.setUser(rs.getString(2));
-					account.setPass(rs.getString(3));
-					account.setIsSell(rs.getInt(4));
-					account.setIsAdmin(rs.getInt(5));
+					account.setUsername(rs.getString(2));
+					account.setUser(rs.getString(3));
+					account.setPass(rs.getString(4));
+					account.setIsSell(rs.getInt(5));
+					account.setIsAdmin(rs.getInt(6));
 					list.add(account);
 				}
 				return list;
@@ -68,5 +69,78 @@ public class AccountImp implements IAccount {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public String UsernameExist(String username) {
+		String re =null;
+		Connection con = getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		if (con != null) {
+			try {
+				String sql = "SELECT*FROM dbo.Account WHERE username=?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, username);
+				rs = ps.executeQuery();
+				while (rs.next()) {
+
+					re = rs.getString(2);
+				}
+				return re;
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (ps != null) {
+						ps.close();
+					}
+					if (con != null) {
+						con.close();
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
+
+	public static void main(String[] args) {
+		AccountImp a = new AccountImp();
+		System.out.println(a.UsernameExist("Bùi Thành Tínd"));
+	}
+
+	@Override
+	public boolean InsertAccount(Account account) {
+		Connection con = getConnection();
+		PreparedStatement ps = null;
+		if (con != null) {
+			try {
+				String sql = "INSERT INTO dbo.Account(username,[user],pass,isSell,isAdmin)VALUES(?,?,?,0,0)";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, account.getUsername());
+				ps.setString(2, account.getUser());
+				ps.setString(3, account.getPass());
+				if (ps.executeUpdate() > 0) {
+					return true;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (ps != null) {
+						ps.close();
+					}
+					if (con != null) {
+						con.close();
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+		return false;
+
 	}
 }

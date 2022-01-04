@@ -11,7 +11,10 @@ public interface IProduct {
 	 List<Product> getOneOrMoreSpecialDeals(int top,String cateID) ;
 	 List<Product> getAllBySearch(String searchTitle) ;
 	 Product getOneById(String id) ;
-	 List<Product> getAll() ;
+	 List<Product> getAll();
+	 int countgetAllProduct();
+	 int countgetAllProduct(String cateID);
+	 List<Product> getProducByPaging(int input,int param);
 	 
 	 
 	 

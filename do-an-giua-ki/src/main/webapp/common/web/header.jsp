@@ -20,7 +20,8 @@
 						<li><a href='<c:url value="/trangchu"/>' class="active">Home</a></li>
 						<li><a href="about.html">About</a></li>
 						<li><a href="404.html">Team</a></li>
-						<li><a href="shop.html">Shop Now</a></li>
+						<li><a href='<c:url value="/shop?getAllPro=getAll"/>'>Shop
+								Now</a></li>
 						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</nav>
@@ -33,11 +34,23 @@
 			<!-- cart details -->
 			<div class="top_nav_right">
 				<div class="shoecart shoecart2 cart cart box_1">
-					<form action='<c:url value="/checkout"/>' method="post" class="last">
+					<form action='<c:url value="/checkout"/>' method="post"
+						class="last">
 						<input type="hidden" name="cmd" value="_cart"> <input
 							type="hidden" name="display" value="1">
 						<button class="top_shoe_cart" type="submit" name="submit" value="">
 							<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+							<c:if test="${not empty giohangs}">
+								<span id="listsize"
+									style="border-radius: 40px; font-size: 11px; position: absolute; text-align: center; width: 20px; height: 20px; background: red; margin-top: -13px; margin-left: -33px;">
+									${listSize} </span>
+							</c:if>
+							<c:if test="${ empty giohangs}">
+								<span id="listsize"
+									style="border-radius: 40px; font-size: 11px; position: absolute; text-align: center; width: 20px; height: 20px; background: red; margin-top: -13px; margin-left: -33px;">
+									0 </span>
+							</c:if>
+
 						</button>
 					</form>
 				</div>
@@ -53,7 +66,7 @@
 			</ul>
 		</div>
 		<div id="cd-search" class="cd-search">
-			<form action='<c:url value="/shop"/>' method="post">
+			<form action='<c:url value="/shop"/>' method="get">
 				<input name="Search" type="search"
 					placeholder="Click enter after typing...">
 			</form>
@@ -62,5 +75,5 @@
 	<!-- //search -->
 	<div class="clearfix"></div>
 	<!-- /banner_inner -->
-	
+
 	<!-- //banner_inner -->

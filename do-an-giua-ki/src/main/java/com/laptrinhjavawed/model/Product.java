@@ -5,9 +5,9 @@ public class Product {
 	String name,image;
 	double price;
 	String title,description;
-	int cateID,sellID;
+	int cateID,SLHangTon;
 	public Product(int id, String name, String image, double price, String title, String description, int cateID,
-			int sellID) {
+			int SLHangTon) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -16,7 +16,7 @@ public class Product {
 		this.title = title;
 		this.description = description;
 		this.cateID = cateID;
-		this.sellID = sellID;
+		this.SLHangTon = SLHangTon;
 	}
 	public Product() {
 		super();
@@ -63,16 +63,17 @@ public class Product {
 	public void setCateID(int cateID) {
 		this.cateID = cateID;
 	}
-	public int getSellID() {
-		return sellID;
+	
+	public int getSLHangTon() {
+		return SLHangTon;
 	}
-	public void setSellID(int sellID) {
-		this.sellID = sellID;
+	public void setSLHangTon(int sLHangTon) {
+		SLHangTon = sLHangTon;
 	}
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", image=" + image + ", price=" + price + ", title=" + title
-				+ ", description=" + description + ", cateID=" + cateID + ", sellID=" + sellID + "]";
+				+ ", description=" + description + ", cateID=" + cateID + ", sellID=" + SLHangTon + "]";
 	}
 	
 

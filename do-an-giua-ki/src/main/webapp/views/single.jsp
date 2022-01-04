@@ -3,11 +3,11 @@
 <%@include file="/common/tablig.jsp"%>
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
 <title>Downy Shoes an Ecommerce Category Bootstrap Responsive
 	Website Template | Single :: w3layouts</title>
 </head>
+<c:url var="checkout" value="/checkout" />
 <body>
 	<div class="services-breadcrumb_w3ls_agileinfo">
 		<div class="inner_breadcrumb_agileits_w3">
@@ -107,20 +107,16 @@
 				</div>
 				<div class="occasion-cart">
 					<div class="shoe single-item single_page_b">
-						<form action='<c:url value="/checkout"/>' method="post">
-							<input type="hidden" name="cmd" value="_cart"> <input
-								type="hidden" name="add" value="1"> <input type="hidden"
-								name="id" value="${oneprod.id} "> <input type="hidden"
-								name="shoe_item" value="${oneprod.name} "> <input
-								type="hidden" name="image" value="${oneprod.image} "> <input
-								type="hidden" name="title" value="${oneprod.title} "> <input
-								type="hidden" name="description" value="${oneprod.description}">
-							<input type="hidden" name="cateID" value="${oneprod.cateID} ">
-							<input type="hidden" name="sellID" value="${oneprod.sellID} ">
-							<input type="hidden" name="amount" value="${oneprod.price } ">
-							<input type="submit" name="submit" value="Add to cart"
-								class="button add"> <a href="#" data-toggle="modal"
-								data-target="#myModal1"></a>
+						<form id="formsubmit">
+							<input type="hidden" name="id" id="id" value="${oneprod.id} ">
+							<input type="hidden" name="name" id="name"
+								value="${oneprod.name} "> <input type="hidden"
+								name="image" id="image" value="${oneprod.image} "><input
+								type="hidden" name="count" id="count" value="1"> <input
+								type="hidden" name="price" id="price" value="${oneprod.price } ">
+							<input type="button" name="submit" id="submitSingle"
+								value="Add to cart" class="button add"> <a href="#"
+								data-toggle="modal" data-target="#myModal1"></a>
 						</form>
 
 					</div>
@@ -233,7 +229,7 @@
 				<h3>Featured Products</h3>
 				<!-- /womens -->
 				<c:forEach items="${listFour}" var="item">
-					<div class="col-md-3 product-men women_two">
+					<div class="col-md-3 product-men women_two inforShoes">
 						<div class="product-shoe-info shoe">
 							<div class="men-pro-item">
 								<div class="men-thumb-item">
@@ -272,19 +268,20 @@
 														aria-hidden="true"></i></a></li>
 											</ul>
 										</div>
-										<div class="shoe single-item hvr-outline-out">
-											<form action="#" method="post">
-												<input type="hidden" name="cmd" value="_cart"> <input
-													type="hidden" name="add" value="1"> <input
-													type="hidden" name="shoe_item" value="Shuberry Heels">
-												<input type="hidden" name="amount" value="575.00">
-												<button type="submit" class="shoe-cart pshoe-cart">
-													<i class="fa fa-cart-plus" aria-hidden="true"></i>
-												</button>
-
-												<a href="#" data-toggle="modal" data-target="#myModal1"></a>
+										<div class="shoe single-item hvr-outline-out" id="EachProduct">
+											<form id="formsubmit1">
+												<input type="hidden" name="id" class="id"
+													value="${item.id} "> <input type="hidden"
+													name="name" class="name" value="${item.name} "> <input
+													type="hidden" name="image" class="image"
+													value="${item.image} "><input type="hidden"
+													name="count" class="count" value="1"> <input
+													type="hidden" name="price" class="price"
+													value="${item.price } "> <input type="button"
+													name="submit" value="Add to cart"
+													class="button add buttonaddnew"> <a href="#"
+													data-toggle="modal" data-target="#myModal1"></a>
 											</form>
-
 										</div>
 									</div>
 									<div class="clearfix"></div>
@@ -299,5 +296,63 @@
 			<!--//new_arrivals-->
 		</div>
 	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+		
+	</script>
+	<script>
+		$('#submitSingle').click(function(e) {
+			e.preventDefault();
+			var data = {};
+			var formData = $('#formsubmit').serializeArray();
+			$.each(formData, function(i, v) {
+				data["" + v.name + ""] = v.value;
+			});
+			addNewCart(data);
+		});
+
+		$('.buttonaddnew').click(function(e) {
+			e.preventDefault();
+			var price = $(this).closest(".inforShoes").find(".price").val();
+			var name = $(this).closest(".inforShoes").find(".name").val();
+			var image = $(this).closest(".inforShoes").find(".image").val();
+			var count = $(this).closest(".inforShoes").find(".count").val();
+			var id = $(this).closest(".inforShoes").find(".id").val();
+
+			$.ajax({
+				url : '/do-an-giua-ki/api-checkout',
+				type : 'POST',
+				contentType : 'application/json',
+				data : JSON.stringify({
+					price : price,
+					id : id,
+					name : name,
+					count : count,
+					image : image
+				}),
+				dataType : 'json',
+				success : function(re) {
+					alert("tc");
+					$("#listsize").html(re);
+
+				}
+			});
+		});
+		function addNewCart(data) {
+			$.ajax({
+				url : '/do-an-giua-ki/api-checkout',
+				type : 'POST',
+				contentType : 'application/json',
+				data : JSON.stringify(data),
+				dataType : 'json',
+				success : function(re) {
+					alert("tc");
+					$("#listsize").html(re);
+
+				}
+			});
+		}
+	</script>
+
 </body>
 </html>

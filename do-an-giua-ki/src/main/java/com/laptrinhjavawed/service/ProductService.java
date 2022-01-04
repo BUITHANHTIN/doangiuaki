@@ -42,4 +42,20 @@ public class ProductService implements IProductService {
 		// TODO Auto-generated method stub
 		return product.getAll();
 	}
+
+	@Override
+	public int countgetAllProduct() {
+		return product.countgetAllProduct();
+	}
+
+	@Override
+	public int countgetAllProduct(String cateID) {
+		return product.countgetAllProduct(cateID);
+	}
+
+	@Override
+	public List<Product> getProducByPaging(int input, int param) {
+		return product.getProducByPaging(input, param);
+	}
+	
 }
